@@ -1,15 +1,23 @@
 import "./App.css";
-import { Navbar } from "./components/Navbar";
+import { useState } from "react";
+import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import SideBar from "./pages/SideBar";
+import data from "./assets/data.json";
+import ProductList from "./components/ProductList";
 
 function App() {
+  const [products, setProducts] = useState(data);
   return (
     <>
       <Navbar />
-      <div className="container"/>
+      <div className="container" />
+
       <main>
-        <h1>text</h1>
+        <ProductList
+          products={products}
+          onDelete={(id) => setProducts(products.filter((p) => p.id !== id))}
+        />
       </main>
       <SideBar />
       <Footer />
