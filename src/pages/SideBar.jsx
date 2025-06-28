@@ -1,16 +1,19 @@
 import React from "react";
 
-function SideBar() {
+function SideBar({ categories, onCategoryClick, onReset }) {
   return (
     <div className="sidebar">
-      <button> Category</button>
-      <button> Btn 2</button>
-      <button> Btn 3</button>
-      <button> Btn 4</button>
-      <button> Btn 5</button>
-      <button> Btn 6</button>
-      <button> Shipping Information</button>
-      <button> Btn 8</button>
+      <h3>Categories</h3>
+
+      <button onClick={onReset}>All Products</button>
+
+      {categories.map((category, index) => (
+        <button key={index} onClick={() => onCategoryClick(category)}>
+          {category}
+        </button>
+      ))}
+
+      <button>Shipping Information</button>
     </div>
   );
 }
