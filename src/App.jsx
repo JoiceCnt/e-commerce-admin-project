@@ -1,48 +1,84 @@
 import "./App.css";
 import { useState } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
-import SideBar from "./pages/SideBar";
-import data from "./assets/data.json"; // product list imported
+import SideBar from "./components/SideBar";
 import ProductList from "./components/ProductList";
 
+import Home from "./pages/Home";
+import About from "./pages/About";
+import ItemDetailsPage from "./pages/ItemDetailsPage";
+import NotFound from "./pages/NotFound";
+import Dashboard from "./pages/Dashboard";
+import data from "./assets/data.json";
+import Products from "./pages/Products";
+
 function App() {
-  const [products] = useState(data); // product list
-  const [filteredProducts, setFilteredProducts] = useState(data); //
+  const [products] = useState(data);
+  const [filteredProducts, setFilteredProducts] = useState(data);
 
-  const categories = [...new Set(products.map((product) => product.category))]; // get the categories of products
+  const categories = [...new Set(products.map((product) => product.category))];
 
-  // filter products by category
-  const handleCategoriesClick = (category) => {
-    //handleCategoriesClick takes one argument (category) and runs when the button is clicked
-    const filtered = products.filter((p) => p.category === category); // keeps only the products whose category matches the selected category
+  const handleCategoryClick = (category) => {
+    const filtered = products.filter((p) => p.category === category);
     setFilteredProducts(filtered);
   };
-  // show products
+
   const handleReset = () => {
     setFilteredProducts(products);
   };
+
+  const handleDelete = (id) => {
+    setFilteredProducts(filteredProducts.filter((p) => p.id !== id));
+  };
+
+  const handleSearch = (query) => {
+    if (!query) {
+      setFilteredProducts(products);
+    } else {
+      const filtered = products.filter((p) =>
+        p.title.toLocaleLowerCase().includes(query.toLocaleLowerCase())
+      );
+      setFilteredProducts(filtered);
+    }
+  };
+
   return (
     <>
-      <Navbar />
-      <div className="container" />
-
-      <main>
-        <ProductList
-          products={filteredProducts} // passes the array of products objects to the productList, tells which product to show on the screen
-          onDelete={
-            (id) =>
-              setFilteredProducts(filteredProducts.filter((p) => p.id !== id)) //this onDelete function receive an id of the product to delete,
-            //remove that product from filteredProducts array and update the state os setFilteredProducts
-          }
+      <Navbar onSearch={handleSearch} />
+      <div className="container">
+        <SideBar
+          categories={categories}
+          onCategoryClick={handleCategoryClick}
+          onReset={handleReset}
         />
-      </main>
 
-      <SideBar
-        categories={categories} // passing a prop to the sideBar component, the value is the category array defined in const categories
-        onCategoryClick={handleCategoriesClick} //when a button is clicked this call the function
-        onReset={handleReset} // removes the filter and set all the products back
-      />
+        <main>
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <Home products={filteredProducts} onDelete={handleDelete} />
+              }
+            />
+            <Route path="/about" element={<About />} />
+            <Route path="/dashboard" element={<Dashboard />} />
+            <Route
+              path="/product/details/:productId"
+              element={<ItemDetailsPage />}
+            />
+            <Route path="*" element={<NotFound />} />
+            <Route
+              path="/products"
+              element={
+                <Products products={filteredProducts} onDelete={handleDelete} />
+              }
+            />
+          </Routes>
+        </main>
+      </div>
       <Footer />
     </>
   );

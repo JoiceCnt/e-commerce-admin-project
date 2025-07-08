@@ -7,6 +7,15 @@ body {
 
 .container {
   display: flex;
+  padding-top: 80px; /* Space for the fixed Navbar */
+}
+
+.container.full-width {
+  /* removes the layout when there is no sidebar */
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  display: block; /* Ensures the container behaves as a block element */
 }
 
 /* === Sidebar === */
@@ -14,33 +23,57 @@ body {
   width: 220px;
   background: #e4e0e1;
   padding: 1rem;
-  height: calc(100vh - 60px); /* assuming navbar is 60px */
+  height: calc(
+    100vh - 100px
+  ); /* Adjusting for navbar (80px) + some top space */
   position: fixed;
-  top: 100px;
+  top: 80px; /* Position below the Navbar */
   left: 0;
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  z-index: 999; /* Ensure sidebar is below Navbar but above main content */
 }
 
-.sidebar button {
-  background-color: #52441c;
+.product-dropdown ul {
+  list-style: none;
+  padding: 0;
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.product-dropdown li {
+  width: 100%;
+}
+.sidebar-button,
+.product-dropdown button {
+  background-color: #493628;
   border: none;
   color: white;
   padding: 0.6rem 1rem;
-  border-radius: 8px;
+  border-radius: 6px;
   cursor: pointer;
   text-align: left;
+  width: 100%;
+  font-size: 1.1rem;
+  text-decoration: none;
+  display: block;
 }
 
-.sidebar button:hover {
-  background-color: #52441c;
+.sidebar-button:hover,
+.product-dropdown button:hover {
+  background-color: #a77845;
 }
 
 /* === Main Content === */
 main {
-  margin-left: 240px; /* leaves space for sidebar */
+  margin-left: 240px;
   padding: 2rem;
+  padding-top: 100px;
+  padding-bottom: 10px;
+  flex-grow: 1;
+  box-sizing: border-box;
 }
 
 /* === Product List === */
@@ -103,7 +136,7 @@ nav {
   top: 0;
   left: 0;
   right: 0;
-  z-index: 1000;
+  z-index: 1000; /* Ensure Navbar is on top */
   box-sizing: border-box;
 }
 
@@ -156,7 +189,244 @@ nav .admin-icon {
 }
 
 .logo-img {
-  height: 100px;
+  height: 40px;
   width: auto;
   object-fit: contain;
+}
+.home-button {
+  color: white;
+  text-decoration: none;
+  font-size: 1rem;
+  margin-left: 1rem;
+  background-color: transparent;
+  border: 1px solid white;
+  padding: 6px 12px;
+  border-radius: 5px;
+  transition: background-color 0.2s ease;
+}
+
+.home-button:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.footer {
+  height: 80px;
+  width: 100%;
+  background: linear-gradient(to right, #493628 20%, #af8160 76%);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2rem;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000; /* Ensure Footer is on top */
+  box-sizing: border-box;
+}
+
+.footer a,
+.footer-link {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.footer a:hover,
+.footer-link:hover {
+  text-decoration: underline;
+}
+
+/* ====About Page ====*/
+.about-page {
+  width: 100%;
+  padding: 2rem;
+  background-color: #fff;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: calc(100vh - 80px - 80px);
+  justify-content: flex-start;
+  margin: auto;
+}
+
+.team-member img {
+  width: 80px;
+  height: 80px;
+  margin-bottom: 1rem;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.project-description ul {
+  list-style-type: none;
+  text-align: left;
+  margin: 0 auto;
+  padding-left: 4.5rem;
+  max-width: 600px;
+}
+
+.project-description li {
+  font-size: 1rem;
+  margin-bottom: 0.8rem;
+}
+.project-description h2,
+.project-description h1 {
+  margin-bottom: 1rem;
+  color: #333;
+}
+.project-description p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+.team-section {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+  margin-bottom: 3rem;
+  width: 100%;
+  max-width: 1200px;
+}
+
+.team-member {
+  background-color: #f9f9f9;
+  padding: 1rem;
+  max-width: 400px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+  flex: 1 1 auto; /* Allows items to grow and shrink, maintaining a base size */
+  min-width: 280px; /* Ensures they don't get too small */
+}
+
+.project-description {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto; /* Centers the block */
+  padding: 0 1rem; /* Adds some horizontal padding for smaller screens */
+}
+
+.project-description h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.project-description p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+/* === Items === */
+.item-details {
+  display: flex;
+  gap: 2rem;
+  margin-top: 100px;
+  padding: 2rem;
+  flex-wrap: wrap;
+}
+
+.item-image {
+  max-width: 300px;
+  border-radius: 8px;
+  object-fit: contain;
+  background-color: #fff;
+  padding: 1rem;
+  border: 1px solid #ddd;
+}
+
+.item-info {
+  max-width: 600px;
+}
+
+.item-info h2 {
+  margin-bottom: 1rem;
+}
+
+.item-info p {
+  margin: 0.5rem 0;
+}
+
+.home-button {
+  display: inline-block;
+  margin-top: 1rem;
+  text-decoration: none;
+  color: white;
+  background-color: #493628;
+  padding: 8px 16px;
+  border-radius: 6px;
+}
+
+.home-button:hover {
+  background-color: #a77845;
+}
+
+/* === Not Found Page === */
+.not-found {
+  text-align: center;
+  padding: 4rem 2rem;
+  margin-top: 100px;
+  margin-bottom: 100px;
+}
+
+.not-found h1 {
+  font-size: 6rem;
+  color: #c49c68;
+  margin: 0;
+}
+
+.not-found h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.not-found p {
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+}
+
+/*====Dashboard====*/
+
+.dashboard-page {
+  padding: 2rem;
+  color: #3b2e2e;
+}
+
+.dashboard-page h2 {
+  margin-bottom: 1rem;
+  font-size: 2rem;
+}
+
+.dashboard-page ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.dashboard-page li {
+  margin: 0.5rem 0;
+  font-size: 1.1rem;
+}
+.alerts {
+  display: flex;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+.alert-card {
+  margin-bottom: 1rem;
+  padding: 1rem;
+  background-color: #fffbe6;
+  border: 1px solid #ffe58f;
+  border-radius: 6px;
+}
+.alert-card button {
+  display: block;
+  margin: 5px 0;
+  padding: 6px 12px;
+  cursor: pointer;
+  background-color: #eee;
+  border: none;
+  border-radius: 5px;
 }
