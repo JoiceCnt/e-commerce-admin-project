@@ -1,4 +1,4 @@
-/* === General Layout === */
+/* === GLOBAL LAYOUT === */
 body {
   margin: 0;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
@@ -7,32 +7,64 @@ body {
 
 .container {
   display: flex;
-  padding-top: 80px; /* Space for the fixed Navbar */
+  padding-top: 80px; /* Space for fixed navbar */
 }
 
 .container.full-width {
-  /* removes the layout when there is no sidebar */
   margin: 0;
   padding: 0;
   width: 100%;
-  display: block; /* Ensures the container behaves as a block element */
+  display: block;
+}
+.overview {
+  display: flex;
+  gap: 1rem;
+  margin: 2rem 0;
+  flex-wrap: wrap;
 }
 
-/* === Sidebar === */
+.overview-card {
+  background-color: white;
+  padding: 1rem;
+  border-radius: 8px;
+  flex: 1;
+  min-width: 180px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+  font-weight: bold;
+  color: #3b2e2e;
+}
+
+.go-to-dashboard {
+  width: 100%;
+  margin-top: 2rem;
+  padding: 1rem 2rem;
+  font-size: 1.1rem;
+  font-weight: bold;
+  background-color: #493628;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.go-to-dashboard:hover {
+  background-color: #a77845;
+}
+
+/* === SIDEBAR === */
 .sidebar {
   width: 220px;
   background: #e4e0e1;
   padding: 1rem;
-  height: calc(
-    100vh - 100px
-  ); /* Adjusting for navbar (80px) + some top space */
+  height: calc(100vh - 100px);
   position: fixed;
-  top: 80px; /* Position below the Navbar */
+  top: 80px;
   left: 0;
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  z-index: 999; /* Ensure sidebar is below Navbar but above main content */
+  z-index: 999;
 }
 
 .product-dropdown ul {
@@ -43,14 +75,16 @@ body {
   flex-direction: column;
   gap: 0.5rem;
 }
+
 .product-dropdown li {
   width: 100%;
 }
+
 .sidebar-button,
 .product-dropdown button {
   background-color: #493628;
   border: none;
-  color: white;
+  color: #e4e0e1;
   padding: 0.6rem 1rem;
   border-radius: 6px;
   cursor: pointer;
@@ -66,7 +100,7 @@ body {
   background-color: #a77845;
 }
 
-/* === Main Content === */
+/* === MAIN AREA === */
 main {
   margin-left: 240px;
   padding: 2rem;
@@ -76,53 +110,7 @@ main {
   box-sizing: border-box;
 }
 
-/* === Product List === */
-.product-list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1.5rem;
-}
-
-.product-card {
-  background: #ffffff;
-  border: 1px solid #ddd;
-  border-radius: 10px;
-  padding: 1rem;
-  width: 240px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-.product-card h3 {
-  margin: 0 0 0.5rem 0;
-  font-size: 1.1rem;
-  color: #333;
-}
-
-.product-card p {
-  margin: 0.25rem 0;
-  font-size: 0.9rem;
-  color: #555;
-}
-
-.product-card button {
-  margin-top: 1rem;
-  padding: 0.5rem;
-  background-color: #c49c68;
-  color: white;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  font-weight: bold;
-}
-
-.product-card button:hover {
-  background-color: #a77845;
-}
-
-/* === Navbar === */
+/* === NAVBAR === */
 nav {
   height: 80px;
   width: 100%;
@@ -136,20 +124,25 @@ nav {
   top: 0;
   left: 0;
   right: 0;
-  z-index: 1000; /* Ensure Navbar is on top */
+  z-index: 1000;
   box-sizing: border-box;
 }
 
-/* Left logo */
 nav .logo {
   font-family: "Cursive", sans-serif;
   font-size: 1.5rem;
   font-weight: bold;
   display: flex;
   align-items: center;
+  gap: 0.5rem;
 }
 
-/* Search input */
+.logo-img {
+  height: 120px;
+  width: auto;
+  object-fit: contain;
+}
+
 nav .search-bar {
   flex-grow: 1;
   max-width: 400px;
@@ -168,7 +161,6 @@ nav .search-bar input {
   outline: none;
 }
 
-/* Right admin section */
 nav .admin {
   display: flex;
   align-items: center;
@@ -180,19 +172,9 @@ nav .admin {
 
 nav .admin-icon {
   font-size: 1.5rem;
-  color: E4E0E1;
-}
-.logo {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
+  color: #e4e0e1;
 }
 
-.logo-img {
-  height: 40px;
-  width: auto;
-  object-fit: contain;
-}
 .home-button {
   color: white;
   text-decoration: none;
@@ -209,20 +191,22 @@ nav .admin-icon {
   background-color: rgba(255, 255, 255, 0.2);
 }
 
+/* === FOOTER === */
 .footer {
   height: 80px;
   width: 100%;
   background: linear-gradient(to right, #493628 20%, #af8160 76%);
   color: white;
   display: flex;
+  justify-content: center;
   align-items: center;
-  justify-content: space-between;
+  gap: 5rem;
   padding: 0 2rem;
   position: fixed;
   bottom: 0;
   left: 0;
   right: 0;
-  z-index: 1000; /* Ensure Footer is on top */
+  z-index: 1000;
   box-sizing: border-box;
 }
 
@@ -231,6 +215,7 @@ nav .admin-icon {
   color: white;
   text-decoration: none;
   font-weight: 500;
+  text-align: center;
 }
 
 .footer a:hover,
@@ -238,7 +223,26 @@ nav .admin-icon {
   text-decoration: underline;
 }
 
-/* ====About Page ====*/
+/*=== HOME PAGE ===*/
+.home-page {
+  padding: 2rem;
+  margin-left: 240px;
+  box-sizing: border-box;
+  color: #3b2e2e;
+  min-height: calc(100vh - 160px);
+}
+
+.home-page h1 {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.home-page p {
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+/* === ABOUT PAGE === */
 .about-page {
   width: 100%;
   padding: 2rem;
@@ -247,18 +251,30 @@ nav .admin-icon {
   display: flex;
   flex-direction: column;
   align-items: center;
-  min-height: calc(100vh - 80px - 80px);
+  min-height: calc(100vh - 160px); /* navbar + footer */
   justify-content: flex-start;
   margin: auto;
 }
 
-.team-member img {
-  width: 80px;
-  height: 80px;
-  margin-bottom: 1rem;
-  border-radius: 50%;
-  object-fit: cover;
+.project-description {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 1rem;
 }
+
+.project-description h1,
+.project-description h2 {
+  margin-bottom: 1rem;
+  color: #333;
+  font-size: 2rem;
+}
+
+.project-description p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
 .project-description ul {
   list-style-type: none;
   text-align: left;
@@ -270,15 +286,6 @@ nav .admin-icon {
 .project-description li {
   font-size: 1rem;
   margin-bottom: 0.8rem;
-}
-.project-description h2,
-.project-description h1 {
-  margin-bottom: 1rem;
-  color: #333;
-}
-.project-description p {
-  font-size: 1.1rem;
-  line-height: 1.6;
 }
 
 .team-section {
@@ -299,28 +306,19 @@ nav .admin-icon {
   border-radius: 8px;
   text-align: center;
   box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
-  flex: 1 1 auto; /* Allows items to grow and shrink, maintaining a base size */
-  min-width: 280px; /* Ensures they don't get too small */
+  flex: 1 1 auto;
+  min-width: 280px;
 }
 
-.project-description {
-  text-align: center;
-  max-width: 800px;
-  margin: 0 auto; /* Centers the block */
-  padding: 0 1rem; /* Adds some horizontal padding for smaller screens */
-}
-
-.project-description h2 {
-  font-size: 2rem;
+.team-member img {
+  width: 80px;
+  height: 80px;
   margin-bottom: 1rem;
+  border-radius: 50%;
+  object-fit: cover;
 }
 
-.project-description p {
-  font-size: 1.1rem;
-  line-height: 1.6;
-}
-
-/* === Items === */
+/* === ITEM DETAILS === */
 .item-details {
   display: flex;
   gap: 2rem;
@@ -350,21 +348,7 @@ nav .admin-icon {
   margin: 0.5rem 0;
 }
 
-.home-button {
-  display: inline-block;
-  margin-top: 1rem;
-  text-decoration: none;
-  color: white;
-  background-color: #493628;
-  padding: 8px 16px;
-  border-radius: 6px;
-}
-
-.home-button:hover {
-  background-color: #a77845;
-}
-
-/* === Not Found Page === */
+/* === NOT FOUND PAGE === */
 .not-found {
   text-align: center;
   padding: 4rem 2rem;
@@ -388,8 +372,7 @@ nav .admin-icon {
   margin-bottom: 2rem;
 }
 
-/*====Dashboard====*/
-
+/* === DASHBOARD === */
 .dashboard-page {
   padding: 2rem;
   color: #3b2e2e;
@@ -409,24 +392,74 @@ nav .admin-icon {
   margin: 0.5rem 0;
   font-size: 1.1rem;
 }
+.dashboard-page button {
+  margin: 10px 10px 10px 0;
+  padding: 8px 14px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.alerts-title {
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #3b2e2e;
+  margin-bottom: 1.5rem;
+}
+
 .alerts {
   display: flex;
   gap: 1rem;
+  width: 100%;
+  margin-bottom: 2rem;
+}
+
+.alert-card {
+  flex: 1;
+  background-color: #f36666;
+  border: 1px solid #f36666;
+  border-radius: 8px;
+  padding: 1rem;
+  font-weight: bold;
+  color: #3b2e2e;
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.alert-manage-btn {
+  background-color: #e86861;
+  color: white;
+  font-weight: bold;
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: 8px;
+  cursor: pointer;
   margin-top: 2rem;
 }
-.alert-card {
-  margin-bottom: 1rem;
-  padding: 1rem;
-  background-color: #fffbe6;
-  border: 1px solid #ffe58f;
-  border-radius: 6px;
+.alert-column li {
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
 }
-.alert-card button {
-  display: block;
-  margin: 5px 0;
-  padding: 6px 12px;
-  cursor: pointer;
-  background-color: #eee;
+
+.alert-column li input[type="checkbox"] {
+  margin-right: 0.5rem;
+}
+.product-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.product-actions button {
+  padding: 0.6rem 1.2rem;
+  background-color: #493628;
+  color: white;
   border: none;
-  border-radius: 5px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.product-actions button:hover {
+  background-color: #a77845;
 }

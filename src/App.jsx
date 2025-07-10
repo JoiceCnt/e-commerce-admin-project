@@ -6,7 +6,7 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import SideBar from "./components/SideBar";
 import ProductList from "./components/ProductList";
-
+import ManageProductsForm from "./components/ManageProductsForm";
 import Home from "./pages/Home";
 import About from "./pages/About";
 import ItemDetailsPage from "./pages/ItemDetailsPage";
@@ -14,6 +14,7 @@ import NotFound from "./pages/NotFound";
 import Dashboard from "./pages/Dashboard";
 import data from "./assets/data.json";
 import Products from "./pages/Products";
+import AlertProductsPage from "./pages/AlertProductsPage";
 
 function App() {
   const [products] = useState(data);
@@ -64,11 +65,14 @@ function App() {
               }
             />
             <Route path="/about" element={<About />} />
-            <Route path="/dashboard" element={<Dashboard />} />
+
             <Route
               path="/product/details/:productId"
               element={<ItemDetailsPage />}
             />
+            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/dashboard/alerts" element={<AlertProductsPage />} />
+            <Route path="/dashboard/manage" element={<ManageProductsForm />} />
             <Route path="*" element={<NotFound />} />
             <Route
               path="/products"
