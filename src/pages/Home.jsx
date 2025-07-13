@@ -54,10 +54,18 @@ export default function Home() {
       <h2 className="alerts-title">Alerts</h2>
 
       <div className="alerts">
-        <div className="alert-card">
+        <div
+          className="alert-card"
+          onClick={() => navigate("/dashboard/alerts")}
+          style={{ cursor: "pointer" }}
+        >
           🛒 <strong>{lowStock.length} products low in stock</strong>
         </div>
-        <div className="alert-card">
+        <div
+          className="alert-card"
+          onClick={() => navigate("/dashboard/alerts")}
+          style={{ cursor: "pointer" }}
+        >
           ⭐ <strong>{lowRatings.length} products with low ratings</strong>
         </div>
       </div>

@@ -20,7 +20,7 @@ export default function ItemDetailsPage() {
 
   return (
     <div className="item-details">
-      <img src={product.image} alt={product.title} className="item-image" />
+      <img src={product.thumbnail} alt={product.title} className="item-image" />
       <div className="item-info">
         <h2>{product.title}</h2>
         <p>
@@ -32,23 +32,17 @@ export default function ItemDetailsPage() {
         <p>{product.description}</p>
 
         <div className="product-actions">
-          <button onClick={() => navigate(`/edit/${product.id}`)}>
-            ✏️ Edit Product
-          </button>
-          <button onClick={() => navigate(`/order/${product.id}`)}>
-            📝 Make Order
-          </button>
-          <button onClick={() => navigate(`/reviews/${product.id}`)}>
-            ⭐ View Reviews
-          </button>
-          <button onClick={() => navigate(`/edit-info/${product.id}`)}>
-            🔧 Edit Info
+          <button
+            onClick={() => navigate(`/dashboard/manage?id=${product.id}`)}
+          >
+            ✏️ Update Product
           </button>
         </div>
 
         <p style={{ marginTop: "1.5rem", fontStyle: "italic", color: "#555" }}>
-          You can manage this product using the actions above. For navigation,
-          use the Sidebar to return to Home, Dashboard or About.
+          You can manage this product using Update Product above. For
+          navigation, use the Sidebar to check to Home, Dashboard or About
+          information.
         </p>
 
         <Link to="/" className="home-button">

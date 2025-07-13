@@ -1,6 +1,12 @@
 /* === GLOBAL LAYOUT === */
+
+html,
 body {
   margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  overflow-x: hidden;
+  overflow-y: auto;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   background-color: #f8f5f2;
 }
@@ -8,6 +14,9 @@ body {
 .container {
   display: flex;
   padding-top: 80px; /* Space for fixed navbar */
+  display: flex;
+  min-height: 100vh;
+  flex-direction: row;
 }
 
 .container.full-width {
@@ -57,10 +66,11 @@ body {
   width: 220px;
   background: #e4e0e1;
   padding: 1rem;
-  height: calc(100vh - 100px);
   position: fixed;
   top: 80px;
   left: 0;
+  height: calc(100vh - 80px);
+  overflow-y: auto;
   display: flex;
   flex-direction: column;
   gap: 1rem;
@@ -108,6 +118,9 @@ main {
   padding-bottom: 10px;
   flex-grow: 1;
   box-sizing: border-box;
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
 }
 
 /* === NAVBAR === */
@@ -254,6 +267,9 @@ nav .admin-icon {
   min-height: calc(100vh - 160px); /* navbar + footer */
   justify-content: flex-start;
   margin: auto;
+  overflow-y: auto;
+  max-height: calc(100vh - 160px);
+  padding: bottom 100px;
 }
 
 .project-description {
@@ -322,30 +338,75 @@ nav .admin-icon {
 .item-details {
   display: flex;
   gap: 2rem;
-  margin-top: 100px;
   padding: 2rem;
-  flex-wrap: wrap;
+  max-width: 900px;
+  margin: 2rem auto;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
 }
 
 .item-image {
-  max-width: 300px;
+  width: 300px;
+  height: auto;
   border-radius: 8px;
-  object-fit: contain;
-  background-color: #fff;
-  padding: 1rem;
-  border: 1px solid #ddd;
+  object-fit: cover;
 }
 
 .item-info {
-  max-width: 600px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
 }
 
-.item-info h2 {
-  margin-bottom: 1rem;
+.product-actions {
+  margin-top: 1.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
 }
 
-.item-info p {
-  margin: 0.5rem 0;
+.product-actions button {
+  padding: 0.6rem 1.2rem;
+  background-color: #493628;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: background-color 0.2s ease;
+}
+
+.product-actions button:hover {
+  background-color: #a77845;
+}
+
+.home-button {
+  margin-top: 1.5rem;
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  background-color: #eaeaea;
+  border-radius: 6px;
+  text-decoration: none;
+  color: #333;
+  transition: background-color 0.2s;
+}
+
+.home-button:hover {
+  background-color: #d0d0d0;
+}
+/*====PRODUCT LIST ===*/
+.products-page {
+  margin-left: 240px;
+  padding: 2rem;
+  padding-bottom: 120px;
+  box-sizing: border-box;
+  min-height: 100vh;
+  overflow-y: auto;
 }
 
 /* === NOT FOUND PAGE === */
@@ -461,5 +522,114 @@ nav .admin-icon {
 }
 
 .product-actions button:hover {
+  background-color: #a77845;
+}
+/*=====PRODUCT CARD====*/
+.product-card {
+  width: 220px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 16px;
+  background-color: #fff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  text-align: center;
+  margin: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.product-image {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 12px;
+}
+
+.product-card h3 {
+  font-size: 1.1rem;
+  margin: 8px 0;
+  border: #493628;
+}
+
+.product-card .category {
+  font-size: 0.9rem;
+  color: #666;
+  overflow: auto;
+}
+
+.product-card .out {
+  color: red;
+  font-weight: bold;
+}
+
+.product-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+.product-card {
+  padding: 1rem;
+  margin: 1rem;
+  background-color: #fff8f0;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.product-card:hover {
+  transform: scale(1.02);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/*==== EDIT CREATE FORM====*/
+.manage-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  padding: 2rem;
+  background-color: #fff;
+  border-radius: 10px;
+  max-width: 600px;
+  margin: 2rem auto;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.manage-form label {
+  font-weight: bold;
+  margin-bottom: 0.3rem;
+}
+
+.manage-form input,
+.manage-form select,
+.manage-form textarea {
+  padding: 0.6rem 1rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.manage-form textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+.manage-form button {
+  margin-top: 1.5rem;
+  padding: 0.8rem 1.2rem;
+  font-size: 1rem;
+  background-color: #493628;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  align-self: flex-start;
+}
+
+.manage-form button:hover {
   background-color: #a77845;
 }

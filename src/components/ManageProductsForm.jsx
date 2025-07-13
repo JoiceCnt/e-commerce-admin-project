@@ -1,7 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import data from "../assets/data.json";
+import { useLocation } from "react-router-dom";
 
-export default function ManageProducts() {
+export default function ManageProductsForm() {
+  const location = useLocation();
+  const params = new URLSearchParams(location.search);
+  const productIdFromUrl = params.get("id");
+
   const [action, setAction] = useState("create");
   const [selectedProductId, setSelectedProductId] = useState("");
   const [formData, setFormData] = useState({
@@ -33,10 +38,55 @@ export default function ManageProducts() {
     thumbnail: "",
   });
 
+  useEffect(() => {
+    if (productIdFromUrl) {
+      setAction("update");
+      const product = data.find(
+        (item) => item.id.toString() === productIdFromUrl
+      );
+      if (product) {
+        setSelectedProductId(product.id.toString());
+        setFormData({
+          ...product,
+          tags: product.tags.join(", "),
+          images: product.images.join(", "),
+        });
+      }
+    }
+  }, [productIdFromUrl]);
+
   const handleActionChange = (e) => {
     const newAction = e.target.value;
     setAction(newAction);
-    setFormData({ ...formData });
+    setSelectedProductId("");
+    setFormData({
+      title: "",
+      description: "",
+      category: "",
+      price: "",
+      discountPercentage: "",
+      rating: "",
+      stock: "",
+      tags: "",
+      sku: "",
+      weight: "",
+      dimensions: {
+        width: "",
+        height: "",
+        depth: "",
+      },
+      warrantyInformation: "",
+      shippingInformation: "",
+      availabilityStatus: "",
+      returnPolicy: "",
+      minimumOrderQuantity: "",
+      meta: {
+        barcode: "",
+        qrCode: "",
+      },
+      images: "",
+      thumbnail: "",
+    });
   };
 
   const handleProductSelect = (e) => {
@@ -116,7 +166,7 @@ export default function ManageProducts() {
   return (
     <div className="manage-products">
       <h2>Manage Products</h2>
-      <form onSubmit={handleSubmit}>
+      <form className="manage-form" onSubmit={handleSubmit}>
         <label>
           Action:
           <select value={action} onChange={handleActionChange}>
