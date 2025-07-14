@@ -27,20 +27,11 @@ body {
 }
 .overview {
   display: flex;
-  gap: 1rem;
+  gap: 3rem;
   margin: 2rem 0;
   flex-wrap: wrap;
-}
-
-.overview-card {
-  background-color: white;
-  padding: 1rem;
-  border-radius: 8px;
-  flex: 1;
-  min-width: 180px;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
-  font-weight: bold;
-  color: #3b2e2e;
+  font-size: x-large;
+  align-items: center;
 }
 
 .go-to-dashboard {
@@ -203,6 +194,19 @@ nav .admin-icon {
 .home-button:hover {
   background-color: rgba(255, 255, 255, 0.2);
 }
+.auth-buttons button {
+  background-color: #4d362a;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.auth-buttons button:hover {
+  background-color: #34251d;
+}
 
 /* === FOOTER === */
 .footer {
@@ -307,6 +311,7 @@ nav .admin-icon {
 .team-section {
   display: flex;
   justify-content: center;
+  text-align: justify;
   gap: 2rem;
   flex-wrap: wrap;
   margin-bottom: 3rem;
@@ -332,6 +337,12 @@ nav .admin-icon {
   margin-bottom: 1rem;
   border-radius: 50%;
   object-fit: cover;
+}
+.social-links {
+  margin-top: 10px;
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
 }
 
 /* === ITEM DETAILS === */

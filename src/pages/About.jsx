@@ -11,9 +11,13 @@ const About = () => {
           <h3>Joice Conte</h3>
           <img src={joicePhoto} alt="Joice Conte" />
           <p>
-            This is simply dummy text ever since the 1500s, when an unknown
-            printer took a galley of type and scrambled it to make a type
-            specimen book...
+            She holds a degree in Industrial Design with professional experience
+            in the furniture industry, where she developed a strong eye for
+            usability and aesthetics. Currently transitioning into tech, she is
+            studying full-stack web development and focusing on building
+            interactive, user-friendly interfaces with React. Her background in
+            design brings a creative and user-centered approach to every
+            project.
           </p>
           <div className="social-links">
             <a
@@ -39,9 +43,12 @@ const About = () => {
           <h3>Timal Muralage</h3>
           <img src={timPhoto} alt="Timal Muralage" />
           <p>
-            This is simply dummy text ever since the 1500s, when an unknown
-            printer took a galley of type and scrambled it to make a type
-            specimen book...
+            He holds a degree in Graphic Design and has worked as a professional
+            bartender, where he developed strong communication and
+            problem-solving skills. Now studying full-stack web development, he
+            is focused on creating visually appealing and functional web
+            applications. His background in design and hospitality brings both
+            creativity and adaptability to every project.
           </p>
           <div
             style={{
