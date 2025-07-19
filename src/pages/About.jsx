@@ -1,5 +1,3 @@
-import React from "react";
-
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import joicePhoto from "../assets/Joice.jpg";
 import timPhoto from "../assets/Tim.jpg";
